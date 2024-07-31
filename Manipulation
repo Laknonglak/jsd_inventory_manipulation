@@ -1,0 +1,106 @@
+CREATE TABLE Product_categories (
+    category_id INTEGER PRIMARY KEY,
+    category_name VARCHAR (50)
+);
+
+SELECT *
+FROM Product_categories;
+
+
+
+CREATE TABLE Products (
+    product_id INTEGER PRIMARY KEY,
+    product_name VARCHAR (50),
+    product_brand VARCHAR (30),
+    size_or_quantity VARCHAR (50),
+    taste_or_scent VARCHAR (50),
+    colour VARCHAR (30),
+    additional_description VARCHAR (50),
+    quantity_in_stock INTEGER,
+    unit_price DECIMAL(10,2),
+    category_id INTEGER,
+    FOREIGN KEY (category_id) REFERENCES product_categories(category_id)
+);
+
+INSERT INTO product_categories (category_id, category_name)
+VALUES
+    (1, 'Groceries'),
+    (2, 'Toiletries'),
+    (3, 'Stationery'),
+    (4, 'Household Cleaning Supplies'),
+    (5, 'Snacks and Beverages');
+
+SELECT *
+FROM Product_categories;
+
+INSERT INTO Products (product_id, product_name, product_brand, size_or_quantity, taste_or_scent, colour, additional_description, quantity_in_stock, unit_price, category_id)
+VALUES
+    (1, 'Bread', 'Farmhouse', 'loaf', NULL, 'White', NULL, 50, 2.5, 1),
+    (2, 'Milk', 'Tesco', '1 liter', 'Full cream milk', NULL, NULL, 30, 1.8, 1),
+    (3, 'Eggs', 'Happy eggs', 'Pack of 12 large', NULL, NULL, NULL, 40, 3.5, 1),
+    (4, 'Rice', 'Laila', '1 kg', NULL, NULL, 'Long-grain rice', 20, 2, 1),
+    (5, 'Pasta', NULL, '500g', NULL, NULL, NULL, NULL, 1.2, 1),
+    (6, 'Toothpaste', 'Colgate', NULL, 'Mint', NULL, NULL, 15, 1.5, 2),
+    (7, 'Shampoo', 'L''Oreal', '250ml', NULL, NULL, NULL, 20, 2.8, 2),
+    (8, 'Soap', NULL, 'Pack of 3 bars', 'Rose', NULL, NULL, 30, 2, 2),
+    (9, 'Toilet Paper', NULL, 'Pack of 3 rolls', NULL, NULL, NULL, 10, 2.5, NULL),
+    (10, 'Hand Sanitizer', NULL, '100ml', NULL, NULL, NULL, 25, 3, 2),
+    (11, 'Pens', NULL, 'Pack of 5', NULL, 'Black', 'Ballpoint', 40, 1, 3),
+    (12, 'Notebooks', NULL, 'Pack of 3 A5', NULL, NULL, NULL, NULL, 1.5, 3),
+    (13, 'Pencils', NULL, 'Pack of 10', NULL, NULL, 'HB', 50, 1.2, NULL),
+    (14, 'Sticky Notes', NULL, 'Pack of 100 sheets', NULL, 'Yellow', NULL, 20, 0.8, 3),
+    (15, 'Highlighters', NULL, 'Pack of 3', NULL, 'Assorted', NULL, 15, 2, 3),
+    (16, 'All-Purpose Cleaner', 'The pink stuff', '500ml', 'Lemon', NULL, NULL, NULL, 2.5, 4),
+    (17, 'Washing up liquid', 'Fairy', '1 liter', 'Apple', NULL, NULL, 15, 1.8, 4),
+    (18, 'Laundry Detergent', 'Persil', '1 liter', 'Lily', NULL, NULL, 20, 3, 4),
+    (19, 'Sponges', NULL, 'Pack of 3', NULL, NULL, NULL, NULL, 1.2, 4),
+    (20, 'Trash Bags', NULL, 'Pack of 10', NULL, NULL, NULL, NULL, 2.5, 4),
+    (21, 'Eggs', 'Great British eggs', 'Pack of 6', NULL, NULL, 'Organic', 40, 3.5, 1),
+    (22, 'Bread', 'Farmhouse', 'loaf', 'Whole wheat', 'Brown', NULL, 50, 2.5, 1),
+    (23, 'Shampoo', 'Dove', '50ml', NULL, NULL, 'Hydrating for dry hair', 20, 2.8, 2),
+    (24, 'Soap', 'Imperial', '1 bar', NULL, NULL, 'Gentle soap for sensitive skin', 30, 2, 2),
+    (25, 'Toothbrush', 'Oral-B', NULL, NULL, NULL, 'For dry hair', 15, 1.8, 2),
+    (26, 'Shampoo', 'Herbal', '250ml', 'Coconut', NULL, 'For dry hair', 15, 3.5, 2),
+    (27, 'Conditioner', 'Herbal', '200ml', 'Coconut', NULL, 'For all hair types', 20, 3.5, NULL),
+    (28, 'Body Wash', 'Nivea', '500ml', 'Mint', NULL, 'Moisturizing', 25, 3.5, 2),
+    (29, 'Sticky Notes', NULL, 'Pack of 50 sheets', NULL, 'Pink', NULL, 20, 0.8, 3);
+
+SELECT *
+FROM Products;
+
+
+--DELETE
+DELETE FROM Products
+WHERE product_id = 19;
+
+
+
+--Multi Delete
+DELETE FROM Products
+WHERE product_id IN (4,12);
+
+
+
+--ALTER
+ALTER TABLE Products
+ADD COLUMN product_note TEXT;
+
+--UPDATE
+UPDATE Products
+SET product_note = 'Made with natural ingredients and no harsh chemicals'
+WHERE product_id = 7;
+
+--UPDATE
+UPDATE Products
+SET product_note = 'May ask for a difference shape of it'
+WHERE product_id = 5;
+
+UPDATE Products
+SET product_note = 'Need more choice of scent'
+WHERE product_id = 28;
+
+
+UPDATE Products
+SET product_name = 'bin bags'
+WHERE product_id = 20;
+
